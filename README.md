@@ -9,7 +9,7 @@
 2. Choose: "Ohio" (us-east-2) for the instance location
 3. Select "Linux/Unix" platform
 4. Select "OS Only" blueprint
-5. Choose: "Amazon Linux 2"
+5. Choose: "Debian 11.4"
 6. Choose: "Change SSH key pair" 
     - Click: "Create New"
     - Click: "Create" button
@@ -39,16 +39,28 @@
 5. Under "IPv4 Firewall" click: "Add rule"
     - Custom TCP port: 1880
     - Click: "Create"
+6. Under "IPv4 Firewall" click: "Add rule"
+    - Custom TCP port: 1883
+    - Click: "Create"
+7. Under "IPv4 Firewall" click: "Add rule"
+    - Custom TCP port: 8883
+    - Click: "Create"
+8. Under "IPv4 Firewall" click: "Add rule"
+    - Custom TCP port: 9001
+    - Click: "Create"
+9. Under "IPv4 Firewall" click: "Add rule"
+    - Custom TCP port: 9883
+    - Click: "Create"
 
 ## Install Docker
-1. Connect to the Lightsail instance using the static IP and SSH key: ```ssh -i /path/to/private-key.pem ec2-user@public-ip```
-2. Apply updates: ```sudo yum upgrade -y```
-3. Install Docker (on AL2): ```sudo yum install -y docker```
-4. Add the "ec2-user" to "docker" group: ```sudo usermod -a -G docker ec2-user```
+1. Connect to the Lightsail instance using the static IP and SSH key: ```ssh -i /path/to/private-key.pem admin@public-ip```
+2. Apply updates: ```sudo apt-get update && sudo apt-get upgrade -y```
+3. Install standard kit: ```sudo apt-get install -y git htop jq lsof mc mosquitto-clients nano ntp python3 python3-pip tcpdump vim```
+3. Install Docker: ```curl -fsSL https://get.docker.com | sudo sh```
+4. Add the "admin" to "docker" group: ```sudo usermod -a -G docker admin```
 5. Update the groups: ```newgrp docker```
-6. Install docker-compose: ```sudo pip3 install docker-compose```
-7. Enable docker start on boot: ```sudo systemctl enable docker.service```
-8. Start docker: ```x```
+6. Install docker-compose: ```sudo pip install docker-compose```
+7. Docker Swarm initialize: ```sudo docker swarm init```
 9. Reboot: ```sudo reboot```
 
 ## Install Node-RED
