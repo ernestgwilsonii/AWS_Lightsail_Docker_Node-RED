@@ -34,23 +34,31 @@
 2. Click on the Lightsail instance: ```lightsail-docker01```
 3. Click on the "Networking" tab
 4. Under "IPv4 Firewall" click: "Add rule"
-    - Application: "HTTPS" (TCP 443)
+    - Custom TCP port: 81
     - Click: "Create"
 5. Under "IPv4 Firewall" click: "Add rule"
-    - Custom TCP port: 1880
+    - Application: "HTTPS" (TCP 443)
     - Click: "Create"
 6. Under "IPv4 Firewall" click: "Add rule"
-    - Custom TCP port: 1883
+    - Custom TCP port: 1880
     - Click: "Create"
 7. Under "IPv4 Firewall" click: "Add rule"
-    - Custom TCP port: 8883
+    - Custom TCP port: 1883
     - Click: "Create"
 8. Under "IPv4 Firewall" click: "Add rule"
-    - Custom TCP port: 9001
+    - Custom TCP port: 8883
     - Click: "Create"
 9. Under "IPv4 Firewall" click: "Add rule"
+    - Custom TCP port: 9001
+    - Click: "Create"
+10. Under "IPv4 Firewall" click: "Add rule"
     - Custom TCP port: 9883
     - Click: "Create"
+
+# Add a DNS "A Record"
+1. Log in to AWS Route 53
+2. Select desired hosted domain zone
+3. Create DNS "A Record" ```node-red.domain.name n.n.n.n```
 
 ## Install Docker
 1. Connect to the Lightsail instance using the static IP and SSH key: ```ssh -i /path/to/private-key.pem admin@public-ip```
@@ -63,8 +71,10 @@
 7. Docker Swarm initialize: ```sudo docker swarm init```
 9. Reboot: ```sudo reboot```
 
-## Install Node-RED
-1. 
+## Launch Node-RED container
+```
+n
+```
 
 ## Secure Node-RED
 1. 
